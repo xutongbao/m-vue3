@@ -1,7 +1,9 @@
 <template>
 	<div>
-		<button @click="handleAll()">全部数据</button>
-        <button @click="handleFilter()">过滤后的数据</button>
+		<button @click="handleAll()">全部加班</button>
+        <button @click="handleFilter(1)">双休日加班</button>
+		<button @click="handleFilter(2)">节假日加班</button>
+		<button @click="handleFilter(3)">工作日加班</button>
 	</div>
 </template>
 
@@ -13,8 +15,8 @@ export default {
 		handleAll() {
 			this.$store.commit('all')
         },
-        handleFilter() {
-            this.$store.commit('filter')
+        handleFilter(type) {
+            this.$store.commit('filter', type)
         }
 	}
 }

@@ -22,8 +22,8 @@ export default new Vuex.Store({
         all(state) {
             state.tempList = state.list
         },
-        filter(state) {
-            state.tempList = state.list.filter(item => item.status === 1)
+        filter(state, type) {
+            state.tempList = state.list.filter(item => item.type === type)
         }
     },
     actions: {
