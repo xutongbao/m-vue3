@@ -32,8 +32,7 @@ export default {
       Api.login(data).then(res => {
         if (res.code === 200) {
           console.log("登陆成功");
-        } else if (res.code === 400) {
-          alert(res.data);
+          this.$router.push('/list')
         }
       });
       //console.log(this.username + ' ' + this.password)
