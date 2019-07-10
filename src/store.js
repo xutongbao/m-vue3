@@ -28,8 +28,7 @@ export default new Vuex.Store({
     },
     actions: {
         initList({commit}) {
-            Api.getList('?type=2').then((res) => {
-                console.log(res.data)
+            Api.getList('').then((res) => {
                 commit('initList', res.data)
             })
         }

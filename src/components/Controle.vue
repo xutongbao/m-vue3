@@ -8,6 +8,11 @@
 </template>
 
 <script type="text/javascript">
+import Api from '@/api/index.js'
+
+function getID(length) {
+    return Number(Math.random().toString().substr(3, length) + Date.now()).toString(36);
+}
 
 export default {
 	name: 'Control',
