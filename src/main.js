@@ -5,7 +5,7 @@ import App from './App'
 import router from './router'
 import Vuex from 'vuex'
 import '@/utils/interceptors.js'
-import store from './store.js'
+import store from '@/store/store.js'
 
 Vue.config.productionTip = false
 

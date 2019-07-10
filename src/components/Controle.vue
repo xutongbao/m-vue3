@@ -18,10 +18,10 @@ export default {
 	name: 'Control',
 	methods: {
 		handleAll() {
-			this.$store.commit('all')
+			this.$store.commit('list/all')
         },
         handleFilter(type) {
-            this.$store.commit('filter', type)
+            this.$store.commit('list/filter', type)
         }
 	}
 }

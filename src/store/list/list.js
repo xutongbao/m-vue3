@@ -1,27 +1,22 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
 import Api from "@/api/index.js";
 
-Vue.use(Vuex)
-
-export default new Vuex.Store({
+const moduleB = {
+    namespaced: true,
     state: {
-        list: [],
-        tempList: []
+      count: 1,
+      list: [],
+      tempList: [],      
     },
     getters: {
-        listFilter(state) {
-            return state.list;
-        }
     },
     mutations: {
         initList(state, playload) {
             state.list = playload
             state.tempList = playload
-        },
+        },    
         all(state) {
             state.tempList = state.list
-        },
+        },            
         filter(state, type) {
             state.tempList = state.list.filter(item => item.type === type)
         }
@@ -31,6 +26,8 @@ export default new Vuex.Store({
             Api.getList('').then((res) => {
                 commit('initList', res.data)
             })
-        }
+        }          
     }
-})
+}
+
+export default moduleB

@@ -1,7 +1,7 @@
 <template>
   <div class="m-list">
     <Control></Control>
-    <ul v-for="item in listNew" v-bind:key="item.applicationNumber" class="m-list-row-wrap">
+    <ul v-for="item in tempList" v-bind:key="item.applicationNumber" class="m-list-row-wrap">
       <li class="m-list-row">
         <div class="m-list-number">
           <span>申请单号:</span>
@@ -40,7 +40,7 @@ export default {
   },
   computed: {
     ...mapState({
-      listNew: "tempList"
+      tempList: state => state.list.tempList
     })
   },
   methods: {
@@ -62,7 +62,7 @@ export default {
     },    
   },
   created() {
-    this.$store.dispatch('initList')
+    this.$store.dispatch('list/initList')
   }
 };
 </script>
