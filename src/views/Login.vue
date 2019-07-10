@@ -4,7 +4,7 @@
       <input class="m-login-row-input" type="input" v-model="username" placeholder="请输入用户名" />
     </div>
     <div class="m-login-row">
-      <input class="m-login-row-input" type="input" v-model="password" placeholder="请输入密码" />
+      <input class="m-login-row-input" type="password" v-model="password" placeholder="请输入密码" />
     </div>
     <div class="m-login-row">
       <button class="m-login-btn" @click="handleLogin()">登陆</button>
