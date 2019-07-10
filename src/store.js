@@ -6,7 +6,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
-        list: []
+        list: [],
+        tempList: []
     },
     getters: {
         listFilter(state) {
@@ -16,6 +17,13 @@ export default new Vuex.Store({
     mutations: {
         initList(state, playload) {
             state.list = playload
+            state.tempList = playload
+        },
+        all(state) {
+            state.tempList = state.list
+        },
+        filter(state) {
+            state.tempList = state.list.filter(item => item.status === 1)
         }
     },
     actions: {

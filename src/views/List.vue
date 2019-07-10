@@ -1,5 +1,6 @@
 <template>
   <div class="m-list">
+      <Control></Control>
       <ul v-for="item in listNew" v-bind:key="item.applicationNumber">
         <li class="m-list-row">
           <div>
@@ -10,7 +11,7 @@
             <span>申请人:</span>
             <span>{{item.describes}}</span>   
             <span>加班类型:</span>
-            <span>{{item.describes}}</span>                      
+            <span>{{item.status}}</span>                      
           </div>
           <div>
             <span>加班日期:</span>
@@ -26,6 +27,7 @@
 <script>
 import Api from "@/api/index.js";
 import { mapState } from 'vuex'
+import Control from '@/components/Controle.vue'
 
 export default {
   name: "list",
@@ -34,9 +36,12 @@ export default {
       list: []
     };
   },
+  components: {
+    Control
+  },
   computed: {
     ...mapState({
-      listNew: 'list'
+      listNew: 'tempList'
     })
   },
   methods: {
