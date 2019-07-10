@@ -22,14 +22,13 @@ export default new Vuex.Store({
         all(state) {
             state.tempList = state.list
         },
-        filter(state) {
-            state.tempList = state.list.filter(item => item.status === 1)
+        filter(state, type) {
+            state.tempList = state.list.filter(item => item.type === type)
         }
     },
     actions: {
         initList({commit}) {
-            Api.getList('?type=2').then((res) => {
-                console.log(res.data)
+            Api.getList('').then((res) => {
                 commit('initList', res.data)
             })
         }
