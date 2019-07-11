@@ -9,7 +9,7 @@
         </div>
         <div>
           <span>申请人:</span>
-          <span>{{ item.auditor ? item.auditor[0].nickname : null}}</span>
+          <span>{{ item.nickname}}</span>
           <span>加班类型:</span>
           <span>{{overtimeType(item.type)}}</span>
         </div>
@@ -20,15 +20,16 @@
           <span>{{reducetime(item.startTime, item.endTime)}}</span>
         </div>
       </li>
+      <button @click="deleteItem(item.applicationNumber)">删除</button>
     </ul>
   </div>
 </template>
 
 <script>
 import Api from "@/api/index.js";
-import { mapState } from "vuex";
+import Vuex, { createNamespacedHelpers, mapState } from "vuex";
 import Control from "@/components/Controle.vue";
-
+console.log(Vuex)
 export default {
   name: "list",
   data() {
@@ -59,7 +60,16 @@ export default {
       let num = (end_num - start_num) / 1000;
       let day = (num / 60 / 60 / 24).toFixed(1);
       return day;
-    },    
+    },  
+    deleteItem(applicationNumber) {
+      let data = {
+        applicationNumber
+      }
+      Api.deleteItem(data).then(() => {
+        console.log('删除成功')
+        this.$store.dispatch('list/initList')
+      })
+    }
   },
   created() {
     this.$store.dispatch('list/initList')

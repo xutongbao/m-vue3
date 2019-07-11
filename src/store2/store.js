@@ -1,15 +1,14 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import list from './list/list.js'
+import Api from "@/api/index.js";
 import user from './user/user.js'
+import list from './list/list.js'
 
 Vue.use(Vuex)
 
-const store = new Vuex.Store({
+export default new Vuex.Store({
     modules: {
-        list: list,
         user,
+        list
     }
 })
-window.store = store;
-export default store

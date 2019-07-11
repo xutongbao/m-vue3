@@ -32,7 +32,8 @@ export default {
       Api.login(data).then(res => {
         if (res.code === 200) {
           console.log("登陆成功");
-          this.$store.commit('user/username', res.data.username)
+          this.$store.commit('user/setToken', res.data)
+          localStorage.setItem('token', res.data.token)
           this.$router.push('/list')
         }
       });

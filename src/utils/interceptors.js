@@ -1,8 +1,9 @@
 import axios from 'axios'
+//import Vuex from 'vuex'
 
 axios.interceptors.request.use(
     (config) => {
-        console.log(config)
+        config.headers['Authorization'] = localStorage.getItem('token');
         return Promise.resolve(config)
     },
     (error) => {
@@ -17,7 +18,11 @@ axios.interceptors.response.use(
             return Promise.resolve(response)
         } else if (response.data.code === 400) {
             alert(response.data.message)
+        } else if (response.data.code === 403) {
+            console.log('登陆过期')
+            window.location.href = '/login'
         }
+        return Promise.reject(response);
     },
     (error) => {
         return Promise.reject(error.response);

@@ -1,18 +1,21 @@
-import Api from "@/api/index.js";
+import Api from '@/api/index.js'
+
 
 const user = {
     namespaced: true,
-    state: {  
-        username: ''
+    state: {
+        username: '',
+        token: ''
     },
     getters: {
     },
     mutations: {
-        username(state, username) {
-            state.username = username
+        setToken(state, payload) {
+            state.username = payload.username
+            state.token = payload.token
         }
     },
-    actions: {       
+    actions: {
     }
 }
 

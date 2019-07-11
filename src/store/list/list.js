@@ -1,33 +1,38 @@
-import Api from "@/api/index.js";
+import Api from '@/api/index.js'
 
-const moduleB = {
+
+const list = {
     namespaced: true,
     state: {
-      count: 1,
-      list: [],
-      tempList: [],      
+        list: [],
+        tempList: []
     },
     getters: {
     },
     mutations: {
-        initList(state, playload) {
-            state.list = playload
-            state.tempList = playload
-        },    
-        all(state) {
-            state.tempList = state.list
-        },            
+        initList(state, list) {
+            state.list = list,
+            state.tempList = list
+        },
         filter(state, type) {
-            state.tempList = state.list.filter(item => item.type === type)
+            if (type === 'all') {
+                state.tempList = state.list
+            } else {
+                state.tempList = state.list.filter(item => {
+                    return item.type === type
+                })
+            }
         }
     },
     actions: {
         initList({commit}) {
             Api.getList('').then((res) => {
                 commit('initList', res.data)
+            }).catch((err) => {
+
             })
-        }          
+        }
     }
 }
 
-export default moduleB
+export default list
