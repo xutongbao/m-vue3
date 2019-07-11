@@ -14,6 +14,7 @@
 
 <script>
 import Api from "@/api/index.js";
+import { jsEncrypt } from '@/utils/index.js';
 
 export default {
   name: "home",
@@ -25,9 +26,11 @@ export default {
   },
   methods: {
     handleLogin() {
+      let temp = jsEncrypt(this.password)       
+      console.log(temp)
       let data = {
         username: this.username,
-        password: this.password
+        password: jsEncrypt(this.password)
       };
       Api.login(data).then(res => {
         if (res.code === 200) {
@@ -37,7 +40,6 @@ export default {
           this.$router.push('/list')
         }
       });
-      //console.log(this.username + ' ' + this.password)
     }
   }
 };
