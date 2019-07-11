@@ -3,7 +3,7 @@ import axios from 'axios'
 
 axios.interceptors.request.use(
     (config) => {
-        config.headers['Authorization'] = localStorage.getItem('token');
+        config.headers['authorization'] = localStorage.getItem('token');
         return Promise.resolve(config)
     },
     (error) => {
@@ -13,7 +13,6 @@ axios.interceptors.request.use(
 
 axios.interceptors.response.use(
     (response) => {
-        console.log(response)
         if (response.data.code === 200) {
             return Promise.resolve(response)
         } else if (response.data.code === 400) {
