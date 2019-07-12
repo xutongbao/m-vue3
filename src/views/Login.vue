@@ -43,7 +43,10 @@ export default {
       }, {
         value: 'en-US',
         label: 'English'
-      }],
+      }, {
+        value: 'zh-TW',
+        label: '繁體'
+      }]
     };
   },
   methods: {
@@ -75,6 +78,8 @@ export default {
       this.language = '中文'
     } else if (language === 'en-US') {
       this.language = 'English'
+    } else if (language === 'zh-TW') {
+      this.language = '繁體'
     }
     console.log('created')
   }
@@ -105,7 +110,7 @@ export default {
 }
 .m-login-btn {
   width: 100%;
-  height: 40px;
+  height: 40px; 
 }
 .m-register:hover{color: #f66f0c;}
 </style>

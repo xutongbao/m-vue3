@@ -11,6 +11,7 @@ import store from '@/store/store.js'
 import VueI18n from 'vue-i18n'
 import zhCN from '@/i18n/zh-CN.js'
 import enUS from '@/i18n/en-US.js'
+import zhTW from '@/i18n/zh-TW.js'
 
 Vue.config.productionTip = false
 
@@ -20,7 +21,8 @@ Vue.use(VueI18n)
 
 const messages = {
   'en-US': {...enUS},
-  'zh-CN': {...zhCN}
+  'zh-CN': {...zhCN},
+  'zh-TW': {...zhTW}
 }
 
 let currentLocale = localStorage.getItem('language_type') || 'zh-CN'
