@@ -1,5 +1,6 @@
 <template>
   <div class="m-login">
+    <div class="m-title">用户注册</div>
     <div class="m-login-row">
       <input class="m-login-row-input" type="input" v-model="username" placeholder="请输入用户名" autoComplete="off"/>
     </div>
@@ -7,10 +8,10 @@
       <input class="m-login-row-input" type="password" v-model="password" placeholder="请输入密码" autoComplete="off"/>
     </div>
     <div class="m-login-row">
-      <button class="m-login-btn" @click="handleLogin()">登陆</button>
-    </div>
-    <div>
-      <router-link class="m-rigister" to="/register">注册</router-link>
+      <input class="m-login-row-input" type="password" v-model="confirmPassword" placeholder="请再次输入密码" autoComplete="off"/>
+    </div>    
+    <div class="m-login-row">
+      <button class="m-login-btn" @click="handleRegister()">立即注册</button>
     </div>
   </div>
 </template>
@@ -24,23 +25,30 @@ export default {
   data() {
     return {
       username: "",
-      password: ""
+      password: "",
+      confirmPassword: ''
     };
   },
   methods: {
-    handleLogin() {
+    handleRegister() {
+      if (this.username === '') {
+        alert('用户名不能为空')
+        return
+      }
+      if (this.password !== this.confirmPassword) {
+        alert('两次输入的密码不一致')
+        return
+      }
       let temp = jsEncrypt(this.password)       
       console.log(temp)
       let data = {
         username: this.username,
         password: jsEncrypt(this.password)
       };
-      Api.login(data).then(res => {
+      Api.register(data).then(res => {
         if (res.code === 200) {
-          console.log("登陆成功");
-          this.$store.commit('user/setToken', res.data)
-          localStorage.setItem('token', res.data.token)
-          this.$router.push('/list')
+          console.log("注册成功");
+          this.$router.push('/login')
         }
       });
     }
@@ -65,6 +73,5 @@ export default {
   width: 100%;
   height: 40px;
 }
-.m-rigister{text-decoration: underline;cursor: pointer;}
-.m-rigister:hover{color: #F66F0C;}
+.m-title{font-size: 24px;color: #aaaaaa; text-align: center;}
 </style>
