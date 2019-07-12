@@ -1,5 +1,6 @@
 <template>
   <div class="m-login">
+    <div class="m-register">用户注册</div>
     <div class="m-login-row">
       <input class="m-login-row-input" type="input" v-model="username" placeholder="请输入用户名" />
     </div>
@@ -7,10 +8,10 @@
       <input class="m-login-row-input" type="password" v-model="password" placeholder="请输入密码" />
     </div>
     <div class="m-login-row">
-      <button class="m-login-btn" @click="handleLogin()">登陆</button>
-    </div>
-    <div>
-      <router-link to="/register" class="m-register">注册</router-link>
+      <input class="m-login-row-input" type="password" v-model="confirmPassword" placeholder="请再次输入密码" />
+    </div>    
+    <div class="m-login-row">
+      <button class="m-login-btn" @click="handleRegister()">注册</button>
     </div>
   </div>
 </template>
@@ -24,23 +25,27 @@ export default {
   data() {
     return {
       username: "",
-      password: ""
+      password: "",
+      confirmPassword: ''
     };
   },
   methods: {
-    handleLogin() {
+    handleRegister() {
       let temp = jsEncrypt(this.password)       
       console.log(temp)
+      if ( this.username.trim() === '') {
+        alert('用户名不能为空')
+      } else if (this.password != this.confirmPassword) {
+        alert('两次输入的密码不一样')
+      }
       let data = {
         username: this.username,
         password: jsEncrypt(this.password)
       };
-      Api.login(data).then(res => {
+      Api.register(data).then(res => {
         if (res.code === 200) {
-          console.log("登陆成功");
-          this.$store.commit('user/setToken', res.data)
-          localStorage.setItem('token', res.data.token)
-          this.$router.push('/list')
+          console.log("注册成功");
+          this.$router.push('/login')
         }
       });
     }
@@ -65,5 +70,5 @@ export default {
   width: 100%;
   height: 40px;
 }
-.m-register:hover{color: #f66f0c;}
+.m-register{font-size: 30px; text-align: center;}
 </style>
