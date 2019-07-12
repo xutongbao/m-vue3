@@ -8,16 +8,34 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import '@/utils/interceptors.js'
 import store from '@/store/store.js'
+import VueI18n from 'vue-i18n'
+import zhCN from '@/i18n/zh-CN.js'
+import enUS from '@/i18n/en-US.js'
 
 Vue.config.productionTip = false
 
 Vue.use(ElementUI);
+Vue.use(VueI18n)
+
+
+const messages = {
+  'en-US': {...enUS},
+  'zh-CN': {...zhCN}
+}
+
+let currentLocale = localStorage.getItem('language_type') || 'zh-CN'
+
+const i18n = new VueI18n({
+  locale: currentLocale, // 设置地区
+  messages, // 设置地区信息
+})
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
   store,
+  i18n,
   components: { App },
   template: '<App/>'
 })

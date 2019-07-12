@@ -1,17 +1,17 @@
 <template>
   <div class="m-login">
-    <div class="m-register">用户注册</div>
+    <div class="m-register">{{$t('register.userRegister')}}</div>
     <div class="m-login-row">
-      <input class="m-login-row-input" type="input" v-model="username" placeholder="请输入用户名" />
+      <input class="m-login-row-input" type="input" v-model="username" :placeholder="$t('register.usernamePlaceholder')" />
     </div>
     <div class="m-login-row">
-      <input class="m-login-row-input" type="password" v-model="password" placeholder="请输入密码" />
+      <input class="m-login-row-input" type="password" v-model="password" :placeholder="$t('register.passwordPlaceholder')" />
     </div>
     <div class="m-login-row">
-      <input class="m-login-row-input" type="password" v-model="confirmPassword" placeholder="请再次输入密码" />
+      <input class="m-login-row-input" type="password" v-model="confirmPassword" :placeholder="$t('register.confirmPasswordPlaceholder')" />
     </div>    
     <div class="m-login-row">
-      <button class="m-login-btn" @click="handleRegister()">注册</button>
+      <button class="m-login-btn" @click="handleRegister()">{{$t('register.register')}}</button>
     </div>
   </div>
 </template>

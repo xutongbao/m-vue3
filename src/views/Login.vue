@@ -1,16 +1,27 @@
 <template>
   <div class="m-login">
+    <div class="m-language-warp">
+      <el-select v-model="language" @change="handleChangeLanguage">
+        <el-option
+          v-for="item in options"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value">
+        </el-option>
+      </el-select>      
+    </div>
+    <div class="m-login-title">{{$t('login.login')}}</div>
     <div class="m-login-row">
-      <input class="m-login-row-input" type="input" v-model="username" placeholder="请输入用户名" />
+      <input class="m-login-row-input" type="input" v-model="username"  :placeholder="$t('login.usernamePlaceholder')" />
     </div>
     <div class="m-login-row">
-      <input class="m-login-row-input" type="password" v-model="password" placeholder="请输入密码" />
+      <input class="m-login-row-input" type="password" v-model="password" :placeholder="$t('login.passwordPlaceholder')" />
     </div>
     <div class="m-login-row">
-      <button class="m-login-btn" @click="handleLogin()">登陆</button>
+      <button class="m-login-btn" @click="handleLogin()">{{$t('login.login')}}</button>
     </div>
     <div>
-      <router-link to="/register" class="m-register">注册</router-link>
+      <router-link to="/register" class="m-register">{{$t('login.register')}}</router-link>
     </div>
   </div>
 </template>
@@ -24,7 +35,15 @@ export default {
   data() {
     return {
       username: "",
-      password: ""
+      password: "",
+      language: '中文',
+      options: [{
+        value: 'zh-CN',
+        label: '中文'
+      }, {
+        value: 'en-US',
+        label: 'English'
+      }],
     };
   },
   methods: {
@@ -43,15 +62,38 @@ export default {
           this.$router.push('/list')
         }
       });
+    },
+    handleChangeLanguage(value) {
+      console.log(value)
+      localStorage.setItem('language_type', value)
+      window.location.reload()
     }
+  },
+  created() {
+    let language = localStorage.getItem('language_type')
+    if (language === 'zh-CN') {
+      this.language = '中文'
+    } else if (language === 'en-US') {
+      this.language = 'English'
+    }
+    console.log('created')
   }
 };
 </script>
 
 <style scoped>
 .m-login {
-  margin: 0 20px;
+  margin: 20px 20px;
   padding: 0;
+}
+.m-language-warp{
+  margin: 0 0 20px 0;
+  text-align: right;
+}
+.m-login-title{
+  font-size: 30px;
+  text-align: center;
+  color: #f66f0c;
 }
 .m-login-row {
   margin: 20px 0;

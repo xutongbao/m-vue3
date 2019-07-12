@@ -1,20 +1,20 @@
 <template>
 	<div>
-		<button @click="handleFilter('all')">全部加班</button>
-        <button @click="handleFilter(1)">双休日加班</button>
-		<button @click="handleFilter(2)">节假日加班</button>
-		<button @click="handleFilter(3)">工作日加班</button>
-		<el-button @click="handleShow()">添加</el-button>
+		<button @click="handleFilter('all')">{{$t('control.all')}}</button>
+        <button @click="handleFilter(1)">{{$t('control.weekend')}}</button>
+		<button @click="handleFilter(2)">{{$t('control.holiday')}}</button>
+		<button @click="handleFilter(3)">{{$t('control.workingDay')}}</button>
+		<el-button @click="handleShow()">{{$t('control.add')}}</el-button>
 
 		<el-dialog
-		title="添加"
+		:title="$t('control.add')"
 		:visible.sync="dialogVisible"
 		width="300px"
 		:before-close="handleClose">
-		<el-input v-model="nickname" placeholder="请输入姓名"></el-input>
+		<el-input v-model="nickname" :placeholder="$t('control.username')"></el-input>
 		<span slot="footer" class="dialog-footer">
-			<el-button @click="handleClose()">取 消</el-button>
-			<el-button type="primary" @click="handleAdd()">确 定</el-button>
+			<el-button @click="handleClose()">{{$t('control.cancel')}}</el-button>
+			<el-button type="primary" @click="handleAdd()">{{$t('control.ok')}}</el-button>
 		</span>
 		</el-dialog>		
 	</div>

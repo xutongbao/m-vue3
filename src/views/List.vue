@@ -4,23 +4,23 @@
     <ul v-for="item in tempList" v-bind:key="item.applicationNumber" class="m-list-row-wrap">
       <li class="m-list-row">
         <div class="m-list-number">
-          <span>申请单号:</span>
+          <span>{{$t('list.number')}}:</span>
           <span>{{item.applicationNumber}}</span>
         </div>
         <div>
-          <span>申请人:</span>
+          <span>{{$t('list.username')}}:</span>
           <span>{{ item.nickname}}</span>
-          <span>加班类型:</span>
+          <span>{{$t('list.type')}}:</span>
           <span>{{overtimeType(item.type)}}</span>
         </div>
         <div>
-          <span>加班日期:</span>
+          <span>{{$t('list.date')}}:</span>
           <span>{{new Date(item.startTime).toLocaleDateString()}}</span>
-          <span>加班时数:</span>
+          <span>{{$t('list.day')}}:</span>
           <span>{{reducetime(item.startTime, item.endTime)}}</span>
         </div>
       </li>
-      <button @click="deleteItem(item.applicationNumber)">删除</button>
+      <button @click="deleteItem(item.applicationNumber)">{{$t('list.delete')}}</button>
     </ul>
   </div>
 </template>
@@ -47,9 +47,9 @@ export default {
   methods: {
     overtimeType(type) {
       let hook = {
-        '1': '双休日加班',
-        '2': '节假日加班',
-        '3': '工作日加班'
+        '1': this.$t('control.weekend'),
+        '2': this.$t('control.holiday'),
+        '3': this.$t('control.workingDay')
       }
       return hook[type];
     },
