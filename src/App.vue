@@ -11,5 +11,5 @@ export default {
 </script>
 
 <style>
-body{margin: 0;font-size: 20px;}
+body{margin: 0;font-size: 30px;}
 </style>
