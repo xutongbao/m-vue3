@@ -3,6 +3,7 @@ export default {
         login: 'Login',
         usernamePlaceholder: 'Username',
         passwordPlaceholder: 'Password',
+        captchaPlaceholder: 'Captcha',
         register: 'Register'
     },
     register: {

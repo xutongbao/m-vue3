@@ -18,8 +18,8 @@
       <input class="m-login-row-input" type="password" v-model="password" :placeholder="$t('login.passwordPlaceholder')" />
     </div>
     <div class="m-login-row">
-      <input class="m-login-row-input-captcha" type="input" v-model="captcha"  :placeholder="$t('login.usernamePlaceholder')" />
-      <div class="m-captcha" v-html="captchaSvg" @click="handleChangeCaptcha()"></div> 
+      <input class="m-login-row-input-captcha" type="input" v-model="captcha"  :placeholder="$t('login.captchaPlaceholder')" />
+      <div class="m-captcha" v-html="captchaSvg" @click="getCaptcha()"></div> 
     </div>     
     <div class="m-login-row">
       <button class="m-login-btn" @click="handleLogin()">{{$t('login.login')}}</button>
@@ -73,7 +73,11 @@ export default {
           this.$store.commit('user/setToken', res.data)
           localStorage.setItem('token', res.data.token)
           this.$router.push('/list')
+        } else {
+          this.getCaptcha()
         }
+      }).catch((e) => {
+        this.getCaptcha()
       });
     },
     handleChangeLanguage(value) {
@@ -81,7 +85,7 @@ export default {
       localStorage.setItem('language_type', value)
       window.location.reload()
     },
-    handleChangeCaptcha() {
+    getCaptcha() {
       Api.captcha().then((res) => {
         console.log(res)
         captchaId = res.data.captchaId
@@ -99,11 +103,7 @@ export default {
       this.language = '繁體'
     }
     console.log('created')
-    Api.captcha().then((res) => {
-      console.log(res)
-      captchaId = res.data.captchaId
-      this.captchaSvg = res.data.captcha
-    })
+    this.getCaptcha()
   }
 };
 </script>
