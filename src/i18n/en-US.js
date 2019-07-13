@@ -4,15 +4,20 @@ export default {
         usernamePlaceholder: 'Username',
         passwordPlaceholder: 'Password',
         captchaPlaceholder: 'Captcha',
-        register: 'Register'
+        register: 'Register',
+        forgotPassword: 'Forgot password'
     },
     register: {
         userRegister: 'User register',
         usernamePlaceholder: 'Username',
         passwordPlaceholder: 'Password',
         confirmPasswordPlaceholder: 'Confirm password',  
+        email: 'Email', 
         register: 'Register' 
     },
+    forgotPasswordd: {
+        title: 'Forgot password'
+    },     
     list: {
         number: 'No.',
         username: 'Name',

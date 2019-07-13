@@ -11,6 +11,9 @@
       <input class="m-login-row-input" type="password" v-model="confirmPassword" :placeholder="$t('register.confirmPasswordPlaceholder')" />
     </div>    
     <div class="m-login-row">
+      <input class="m-login-row-input" type="input" v-model="email" :placeholder="$t('register.email')" />
+    </div>      
+    <div class="m-login-row">
       <button class="m-login-btn" @click="handleRegister()">{{$t('register.register')}}</button>
     </div>
   </div>
@@ -26,7 +29,8 @@ export default {
     return {
       username: "",
       password: "",
-      confirmPassword: ''
+      confirmPassword: '',
+      email: '',
     };
   },
   methods: {
@@ -40,7 +44,8 @@ export default {
       }
       let data = {
         username: this.username,
-        password: jsEncrypt(this.password)
+        password: jsEncrypt(this.password),
+        email: this.email
       };
       Api.register(data).then(res => {
         if (res.code === 200) {

@@ -4,15 +4,20 @@ export default {
         usernamePlaceholder: '請輸入用戶名',
         passwordPlaceholder: '請輸入密碼',
         captchaPlaceholder: '請輸入驗證碼',
-        register: '註冊'
+        register: '註冊',
+        forgotPassword: '忘記密碼'
     },
     register: {
         userRegister: '用戶註冊',
         usernamePlaceholder: '請輸入用戶名',
         passwordPlaceholder: '請輸入密碼',
-        confirmPasswordPlaceholder: '請再次輸入密碼',  
+        confirmPasswordPlaceholder: '請再次輸入密碼', 
+        email: '請輸入郵箱', 
         register: '註冊' 
     },
+    forgotPasswordd: {
+        title: '找回密碼'
+    },    
     list: {
         number: '單號',
         username: '姓名',

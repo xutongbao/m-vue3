@@ -26,6 +26,7 @@
     </div>
     <div>
       <router-link to="/register" class="m-register">{{$t('login.register')}}</router-link>
+      <router-link to="/forgot_password" class="m-register">{{$t('login.forgotPassword')}}</router-link>
     </div>
   </div>
 </template>
@@ -88,7 +89,7 @@ export default {
         localStorage.setItem('token', res.data.captchaId)
         this.captchaSvg = res.data.captcha
       })
-    }
+    },
   },
   created() {
     let language = localStorage.getItem('language_type')
