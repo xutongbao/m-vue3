@@ -34,8 +34,6 @@
 import Api from "@/api/index.js";
 import { jsEncrypt } from '@/utils/index.js';
 
-let captchaId = ''
-
 export default {
   name: "home",
   data() {
@@ -64,8 +62,7 @@ export default {
       let data = {
         username: this.username,
         password: jsEncrypt(this.password),
-        captcha: this.captcha,
-        captchaId
+        captcha: this.captcha
       };
       Api.login(data).then(res => {
         if (res.code === 200) {
@@ -88,7 +85,7 @@ export default {
     getCaptcha() {
       Api.captcha().then((res) => {
         console.log(res)
-        captchaId = res.data.captchaId
+        localStorage.setItem('token', res.data.captchaId)
         this.captchaSvg = res.data.captcha
       })
     }
