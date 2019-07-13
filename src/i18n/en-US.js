@@ -17,7 +17,10 @@ export default {
     },
     forgotPasswordd: {
         title: 'Forgot password'
-    },     
+    },   
+    resetPassword: {
+        title: 'Reset password'
+    },       
     list: {
         number: 'No.',
         username: 'Name',

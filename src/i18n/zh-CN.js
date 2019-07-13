@@ -18,6 +18,9 @@ export default {
     forgotPasswordd: {
         title: '找回密码'
     },
+    resetPassword: {
+        title: '重置密码'
+    },
     list: {
         number: '单号',
         username: '姓名',

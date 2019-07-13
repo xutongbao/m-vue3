@@ -4,6 +4,7 @@ import Login from '@/views/Login.vue'
 import List from '@/views/List.vue'
 import Register from '@/views/Register.vue'
 import ForgotPassword from '@/views/ForgotPassword.vue'
+import ResetPassword from '@/views/ResetPassword.vue'
 
 Vue.use(Router)
 
@@ -34,6 +35,11 @@ export default new Router({
       path: '/forgot_password',
       name: 'forgot_password',
       component: ForgotPassword
-    },         
+    },   
+    {
+      path: '/reset_password/:token',
+      name: 'reset_password',
+      component: ResetPassword
+    },           
   ]
 })
