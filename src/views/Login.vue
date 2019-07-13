@@ -18,6 +18,10 @@
       <input class="m-login-row-input" type="password" v-model="password" :placeholder="$t('login.passwordPlaceholder')" />
     </div>
     <div class="m-login-row">
+      <input class="m-login-row-input-captcha" type="input" v-model="captcha"  :placeholder="$t('login.usernamePlaceholder')" />
+      <div class="m-captcha" v-html="captchaSvg" @click="handleChangeCaptcha()"></div> 
+    </div>     
+    <div class="m-login-row">
       <button class="m-login-btn" @click="handleLogin()">{{$t('login.login')}}</button>
     </div>
     <div>
@@ -30,12 +34,16 @@
 import Api from "@/api/index.js";
 import { jsEncrypt } from '@/utils/index.js';
 
+let captchaId = ''
+
 export default {
   name: "home",
   data() {
     return {
       username: "",
       password: "",
+      captcha: '',
+      captchaSvg: '',
       language: '中文',
       options: [{
         value: 'zh-CN',
@@ -55,7 +63,9 @@ export default {
       console.log(temp)
       let data = {
         username: this.username,
-        password: jsEncrypt(this.password)
+        password: jsEncrypt(this.password),
+        captcha: this.captcha,
+        captchaId
       };
       Api.login(data).then(res => {
         if (res.code === 200) {
@@ -70,6 +80,13 @@ export default {
       console.log(value)
       localStorage.setItem('language_type', value)
       window.location.reload()
+    },
+    handleChangeCaptcha() {
+      Api.captcha().then((res) => {
+        console.log(res)
+        captchaId = res.data.captchaId
+        this.captchaSvg = res.data.captcha
+      })
     }
   },
   created() {
@@ -82,6 +99,11 @@ export default {
       this.language = '繁體'
     }
     console.log('created')
+    Api.captcha().then((res) => {
+      console.log(res)
+      captchaId = res.data.captchaId
+      this.captchaSvg = res.data.captcha
+    })
   }
 };
 </script>
@@ -101,6 +123,7 @@ export default {
   color: #f66f0c;
 }
 .m-login-row {
+  position: relative;
   margin: 20px 0;
   height: 40px;
 }
@@ -108,6 +131,12 @@ export default {
   width: 100%;
   height: 40px;
 }
+.m-login-row-input-captcha{
+  margin: 0 180px 0 0;
+  width: 70%;
+  height: 40px;;
+}
+.m-captcha{position: absolute;top: 0;right: 0;width: 30%;cursor: pointer;}
 .m-login-btn {
   width: 100%;
   height: 40px; 
